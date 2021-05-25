@@ -47,6 +47,9 @@ WHEN I click on the log-out button in the navigation at the top of the page
 THEN I am directed to the homepage of login and sign-up
 ```
 
+## Original Design
+![Original Design Idea](./public/assets/images/mockup/WholeLayoutDemo.gif)
+
 ## Breakdown-of-Roles
 ```
 Overall minimal design to not take away from art
