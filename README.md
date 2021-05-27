@@ -55,7 +55,7 @@ THEN I am directed to the homepage of login and sign-up
 ## Original-Design
 ![Original Design Idea](./public/assets/images/mockup/WholeLayoutDemo.gif)
 
-## Breakdown-of-Roles
+## Breakdown
 ```
 Overall minimal design to not take away from art
 LOGIN
@@ -72,6 +72,11 @@ User page will have draggable feature, for personalization of the gallery
 DB
 MonogDB will be used for the saved search
 ```
+
+## Data Flow
+
+![Screen Shot 2021-05-26 at 7 54 33 PM](https://user-images.githubusercontent.com/63210444/119750070-57385180-be4d-11eb-827e-a20478b559f2.png)
+
 
 ## Schedule
 
