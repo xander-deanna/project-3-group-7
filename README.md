@@ -3,13 +3,16 @@
 A digital art browser, where you can drag and drop to create your own art gallery and learn about art.
 
 ## Table of Contents
-* [Description](#Description)
-* [User-Story](#User-Story)
-* [Acceptance-Criteria](#Acceptance-Criteria)
-* [Original-Design](#Original-Design)
-* [Breakdown-of-Roles](#Breakdown-of-Roles)
-* [License](#License)
-* [Contact](#Contact)
+- [**(ME)seum** - ![License: MIT](https://opensource.org/licenses/MIT)](#meseum---)
+  - [Table of Contents](#table-of-contents)
+  - [Description](#description)
+  - [User-Story](#user-story)
+  - [Acceptance-Criteria](#acceptance-criteria)
+  - [Original-Design](#original-design)
+  - [Breakdown-of-Roles](#breakdown-of-roles)
+  - [Schedule](#schedule)
+  - [License](#license)
+  - [Contact](#contact)
 
 
 ## Description  
@@ -70,6 +73,15 @@ DB
 MonogDB will be used for the saved search
 ```
 
+## Schedule
+
+![SNAPS 2021-05-24 at 7 03 49 PM](https://user-images.githubusercontent.com/63210444/119748367-a2506580-be49-11eb-833d-d849e3176590.png)
+![SNAPS 2021-05-24 at 7 04 17 PM](https://user-images.githubusercontent.com/63210444/119748392-b1cfae80-be49-11eb-9322-85b70e62dd3c.png)
+![SNAPS 2021-05-24 at 7 04 28 PM](https://user-images.githubusercontent.com/63210444/119748394-b2684500-be49-11eb-9ab7-41a76628ced0.png)
+![SNAPS 2021-05-24 at 7 04 38 PM](https://user-images.githubusercontent.com/63210444/119748395-b300db80-be49-11eb-8c1d-8070c9c39c45.png)
+![SNAPS 2021-05-24 at 7 04 58 PM](https://user-images.githubusercontent.com/63210444/119748408-b85e2600-be49-11eb-976a-66a6516ba954.png)
+
+
 ## License
 This site was created by **Deanna Alexander**, **Kayleigh Hannah**, and **Manorath Naphaphone** and is Licensed under the [MIT License](LICENSE.md).
 <br>
@@ -78,8 +90,8 @@ This site was created by **Deanna Alexander**, **Kayleigh Hannah**, and **Manora
 ## Contact
 Please feel free to contact us with any questions you might have, using the following information:
 
-| Name | Email | GitHub |
-| ------------- | ------------- | ------------- |
-| Deanna Alexander | [xander.deanna@gmail.com](mailto:xander.deanna@gmail.com) | [https://github.com/xander-deanna](https://github.com/xander-deanna) |
-| Kayleigh Hannah | [kayleighchanna@gmail.com](mailto:kayleighchanna@gmail.com) | [https://github.com/K-league](https://github.com/K-league) |
-| Manorath Naphaphone | [naphaphonem@outlook.com](naphaphonem@outlook.com) | [https://github.com/manorathn](https://github.com/manorathn) |
+| Name                | Email                                                       | GitHub                                                               |
+| ------------------- | ----------------------------------------------------------- | -------------------------------------------------------------------- |
+| Deanna Alexander    | [xander.deanna@gmail.com](mailto:xander.deanna@gmail.com)   | [https://github.com/xander-deanna](https://github.com/xander-deanna) |
+| Kayleigh Hannah     | [kayleighchanna@gmail.com](mailto:kayleighchanna@gmail.com) | [https://github.com/K-league](https://github.com/K-league)           |
+| Manorath Naphaphone | [naphaphonem@outlook.com](naphaphonem@outlook.com)          | [https://github.com/manorathn](https://github.com/manorathn)         |
