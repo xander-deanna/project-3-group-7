@@ -3,17 +3,14 @@
 A digital art browser, where you can drag and drop to create your own art gallery and learn about art.
 
 ## Table of Contents
-- [**(ME)seum** - ![License: MIT](https://opensource.org/licenses/MIT)](#meseum---)
-  - [Table of Contents](#table-of-contents)
-  - [Description](#description)
-  - [User-Story](#user-story)
-  - [Acceptance-Criteria](#acceptance-criteria)
-  - [Original-Design](#original-design)
-  - [Breakdown-of-Roles](#breakdown-of-roles)
-  - [Schedule](#schedule)
-  - [License](#license)
-  - [Contact](#contact)
-
+  - [Description](#Description)
+  - [User-Story](#User-Story)
+  - [Acceptance-Criteria](#Acceptance-Criteria)
+  - [Original-Design](#Original-Design)
+  - [Breakdown-of-Roles](#Breakdown-of-Roles)
+  - [Schedule](#Schedule)
+  - [License](#License)
+  - [Contact](#Contact)
 
 ## Description  
 ```
