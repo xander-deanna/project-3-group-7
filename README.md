@@ -52,7 +52,7 @@ THEN I am directed to the homepage of login and sign-up
 ## Original-Design
 ![Original Design Idea](./public/assets/images/mockup/WholeLayoutDemo.gif)
 
-## Breakdown-of-Roles
+## Breakdown
 ```
 Overall minimal design to not take away from art
 LOGIN
@@ -70,6 +70,10 @@ DB
 MonogDB will be used for the saved search
 ```
 
+## Data Flow
+![Screen Shot 2021-05-26 at 7 54 33 PM](https://user-images.githubusercontent.com/63210444/119750070-57385180-be4d-11eb-827e-a20478b559f2.png)
+
+
 ## Schedule
 
 ![SNAPS 2021-05-24 at 7 03 49 PM](https://user-images.githubusercontent.com/63210444/119748367-a2506580-be49-11eb-833d-d849e3176590.png)
@@ -80,7 +84,7 @@ MonogDB will be used for the saved search
 
 
 ## License
-This site was created by **Deanna Alexander**, **Kayleigh Hannah**, and **Manorath Naphaphone** and is Licensed under the [MIT License](LICENSE.md).
+This site was created by **Deanna Alexander**, **Kayleigh Hanna**, and **Manorath Naphaphone** and is Licensed under the [MIT License](LICENSE.md).
 <br>
 <br>
 
