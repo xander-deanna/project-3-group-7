@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../../src/components/heading/index.js"],"names":["Heading"],"mappings":";;;;;;;AAAA;;;;eAEeA,mB","sourcesContent":["import Heading from './heading';\n\nexport default Heading;\n"],"file":"index.js"}

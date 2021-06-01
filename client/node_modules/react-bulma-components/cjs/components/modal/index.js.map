@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../../src/components/modal/index.js"],"names":["Modal"],"mappings":";;;;;;;AAAA;;;;eAEeA,iB","sourcesContent":["import Modal from './modal';\n\nexport default Modal;\n"],"file":"index.js"}

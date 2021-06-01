@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../../src/components/container/index.js"],"names":["Container"],"mappings":";;;;;;;AAAA;;;;eAEeA,qB","sourcesContent":["import Container from './container';\n\nexport default Container;\n"],"file":"index.js"}

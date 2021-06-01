@@ -1,6 +1,5 @@
-import logo from './logo.svg';
-import NavBar from "./components/NavBar";
-
+import Navigation from "./components/Navigation";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import Explore from "./pages/Explore";
 import Gallery from "./pages/Gallery";
 
@@ -9,8 +8,14 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <Explore></Explore>
-      <Gallery></Gallery>
+      <Router>
+        <Navigation></Navigation>
+        <div>
+            <Route exact path="/" component={Explore} />
+            <Route exact path="/explore" component={Explore} />
+            <Route exact path="/gallery" component={Gallery} />
+          </div>
+      </Router>
     </div>
   );
 }

@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../../src/components/tag/index.js"],"names":["Tag"],"mappings":";;;;;;;AAAA;;;;eAEeA,e","sourcesContent":["import Tag from './tag';\n\nexport default Tag;\n"],"file":"index.js"}
