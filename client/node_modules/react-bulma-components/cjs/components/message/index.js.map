@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../../src/components/message/index.js"],"names":["Message"],"mappings":";;;;;;;AAAA;;;;eAEeA,mB","sourcesContent":["import Message from './message';\n\nexport default Message;\n"],"file":"index.js"}
