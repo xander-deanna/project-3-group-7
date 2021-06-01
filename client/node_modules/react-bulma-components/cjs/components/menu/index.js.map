@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../../src/components/menu/index.js"],"names":["Menu"],"mappings":";;;;;;;AAAA;;;;eAEeA,gB","sourcesContent":["import Menu from './menu';\n\nexport default Menu;\n"],"file":"index.js"}

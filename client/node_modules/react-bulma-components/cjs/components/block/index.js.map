@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../../src/components/block/index.js"],"names":["Block"],"mappings":";;;;;;;AAAA;;;;eAEeA,iB","sourcesContent":["import Block from './block';\n\nexport default Block;\n"],"file":"index.js"}
