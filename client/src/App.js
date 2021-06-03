@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Login from "./components/Login/login.component";
 import SignUp from "./components/Signup/signup.component";
 import Search from "./components/Search/explore"
-import About from "./components/About/about"
+import About from "./pages/About/about"
 import Gallery from "./components/Gallery/gallery"
 
 
