@@ -3,45 +3,18 @@ import React from 'react';
 
 import './App.css';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import Login from "./components/Login/login.component";
-import SignUp from "./components/Signup/signup.component";
+import Login from "./pages/Login/login.component";
+import SignUp from "./pages/Signup/signup.component";
 import Search from "./components/Search/explore"
 import About from "./pages/About/about"
-import Gallery from "./components/Gallery/gallery"
+import Gallery from "./pages/Gallery/gallery"
+import Navigation from './components/Navigation';
 
 
 function App() {
   return (<Router>
     <div class="App">
-      <nav class="navbar is-primary fixed-top">
-        <div class="container">
-          <Link className="navbar-brand" to={"/sign-in"}></Link>
-          <div class="collapse navbar-collapse" >
-            <a class="navbar-nav ml-auto">
-              <a class="nav-item">
-                <Link class="nav-link" to={"/about"}>About</Link>
-              </a>
-
-              <a class="nav-item">
-                <Link class="nav-link" to={"/explore"}>Explore</Link>
-              </a>
-
-              <a class="nav-item">
-                <Link class="nav-link" to={"/gallery"}>Gallery</Link>
-              </a>
-
-              <a class="nav-item">
-                <Link class="nav-link" to={"/sign-in"}>Login</Link>
-              </a>
-
-              <a class="nav-item">
-                <Link class="nav-link" to={"/sign-up"}>Sign up</Link>
-              </a>
-            </a>
-          </div>
-        </div>
-      </nav>
-
+      <Navigation />
       <div className="auth-wrapper">
         <div className="auth-inner">
           <Switch>
