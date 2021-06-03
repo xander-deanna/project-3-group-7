@@ -1,22 +1,27 @@
-const express = require('express')
-const bodyParser = require('body-parser')
-const cors = require('cors')
+const express = require("express");
 
-// const db = require("")
-//figure out how to pass the db into the book schema
+// const cors = require('cors')
+// ^^ do we need?
 
-const app = express()
-const apiPort = 8000
+const mongoose = require("mongoose");
+const routes = require("./routes");
+const app = express();
+const PORT = process.env.PORT || 3001;
 
-app.use(bodyParser.urlencoded({ extended: true }))
-app.use(cors())
-app.use(bodyParser.json())
+// Define middleware here
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+// Serve up static assets (usually on heroku)
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
+// Add routes, both API and view
+app.use(routes);
 
-app.get('/', (req, res) => {
-    res.send('Hello World!')
-})
-// app.use('/api', );
+// Connect to the Mongo DB
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/meseume");
 
-// db.on('error', console.error.bind(console, 'MongoDB connection error:'))
-
-// app.listen(apiPort, () => console.log(`Server running on port ${apiPort}`))
+// Start the API server
+app.listen(PORT, function() {
+  console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
+});
