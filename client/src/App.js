@@ -1,34 +1,57 @@
-import React from 'react';
-// import '../node_modules/bulma/css';
+import React, { Component } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import jwt_decode from "jwt-decode";
+import setAuthToken from "./utils/setAuthToken";
 
-import './App.css';
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import Login from "./pages/Login/login.component";
-import SignUp from "./pages/Signup/signup.component";
-import Search from "./components/Search/explore"
-import About from "./pages/About/about"
-import Gallery from "./pages/Gallery/gallery"
-import Navigation from './components/Navigation';
+import { setCurrentUser, logoutUser } from "./actions/authActions";
+import { Provider } from "react-redux";
+import store from "./store";
+
+import Landing from "./components/pages/Landing";
+import Register from "./components/auth/Register";
+import Login from "./components/auth/Login";
+import PrivateRoute from "./components/private-route/PrivateRoute";
+import Dashboard from "./components/dashboard/Dashboard";
 
 
-function App() {
-  return (<Router>
-    <div class="App">
-      <Navigation />
-      <div className="auth-wrapper">
-        <div className="auth-inner">
-          <Switch>
-            <Route exact path='/' component={About} />
-            <Route path="/about" component={About} />
-            <Route path="/explore" component={Search} />
-            <Route path="/gallery" component={Gallery} />
-            <Route path="/sign-in" component={Login} />
-            <Route path="/sign-up" component={SignUp} />
-          </Switch>
-        </div>
-      </div>
-    </div></Router>
-  );
+import "./App.css";
+
+// Check for token to keep user logged in
+if (localStorage.jwtToken) {
+  // Set auth token header auth
+  const token = localStorage.jwtToken;
+  setAuthToken(token);
+  // Decode token and get user info and exp
+  const decoded = jwt_decode(token);
+  // Set user and isAuthenticated
+  store.dispatch(setCurrentUser(decoded));
+  // Check for expired token
+  const currentTime = Date.now() / 1000; // to get in milliseconds
+  if (decoded.exp < currentTime) {
+    // Logout user
+    store.dispatch(logoutUser());
+
+    // Redirect to login
+    window.location.href = "./login";
+  }
 }
-
+class App extends Component {
+  render() {
+    return (
+      <Provider store={store}>
+        <Router>
+          <div className="App">
+            <navigation />
+            <Route exact path="/" component={Landing} />
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/login" component={Login} />
+            <Switch>
+              <PrivateRoute exact path="/dashboard" component={Dashboard} />
+            </Switch>
+          </div>
+        </Router>
+      </Provider>
+    );
+  }
+}
 export default App;
