@@ -19,8 +19,13 @@ const db = require("./config/keys").mongoURI;
 // Connect to MongoDB
 mongoose
   .connect(
-    db,
-    { useNewUrlParser: true }
+    process.env.MONGODB_URI || 'mongodb://localhost/meseum',
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true,
+      useFindAndModify: false
+    }
   )
   .then(() => console.log("MongoDB successfully connected"))
   .catch(err => console.log(err));
