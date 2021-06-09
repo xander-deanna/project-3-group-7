@@ -7,12 +7,18 @@ import { setCurrentUser, logoutUser } from "./actions/authActions";
 import { Provider } from "react-redux";
 import store from "./store";
 
-import Landing from "./components/pages/Landing";
+
+
+// components imports
+import Landing from "./components/auth/Landing";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import PrivateRoute from "./components/private-route/PrivateRoute";
-import Dashboard from "./components/dashboard/Dashboard";
 
+// page imports
+import Explore from "./pages/Explore/Explore"
+import About from "./pages/About/About";
+import Gallery from "./pages/Gallery/Gallery";
 
 import "./App.css";
 
@@ -30,23 +36,29 @@ if (localStorage.jwtToken) {
   if (decoded.exp < currentTime) {
     // Logout user
     store.dispatch(logoutUser());
-
     // Redirect to login
     window.location.href = "./login";
   }
 }
+
 class App extends Component {
   render() {
     return (
       <Provider store={store}>
         <Router>
           <div className="App">
-            <navigation />
-            <Route exact path="/" component={Landing} />
-            <Route exact path="/register" component={Register} />
-            <Route exact path="/login" component={Login} />
             <Switch>
-              <PrivateRoute exact path="/dashboard" component={Dashboard} />
+
+              {/* Auth Pages */}
+              <Route exact path="/" component={Landing} />
+              <Route exact path="/register" component={Register} />
+              <Route exact path="/login" component={Login} />
+
+              {/* Private Account Pages */}
+              <PrivateRoute exact path="/about" component={About} />
+              <PrivateRoute exact path="/explore" component={Explore} />
+              <PrivateRoute exact path="/gallery" component={Gallery} />
+              
             </Switch>
           </div>
         </Router>
