@@ -10,7 +10,6 @@ const About = () => (
         <article class="message">
             <div class="message-header">
                 <p>About the site</p>
-                <button className="delete" aria-label="delete"></button>
             </div>
             <div class="message-body">
                 <p>Hello, and welcome to <strong>(ME)seum</strong>!</p><br/>
