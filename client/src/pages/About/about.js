@@ -1,7 +1,11 @@
 import React from "react";
 
+// navbar component
+import Navigation from "../../components/Navigation";
+
 const About = () => (
     <article class="message is-success " >
+        <Navigation/>
         <div class="message-header">
             <p>About</p>
             <button class="delete" aria-label="delete"></button>
