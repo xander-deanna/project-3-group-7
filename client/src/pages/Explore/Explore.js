@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import Navigation from "../../components/Navigation";
+import Navigation from "../../components/Navigation/Navigation";
 import API from "../../utils/API"
+
 export default class Explore extends Component {
     artSave = id => {
         //select the current art by id and assign its value to variable art
