@@ -7,8 +7,6 @@ import { setCurrentUser, logoutUser } from "./actions/authActions";
 import { Provider } from "react-redux";
 import store from "./store";
 
-
-
 // components imports
 import Landing from "./components/auth/Landing";
 import Register from "./components/auth/Register";

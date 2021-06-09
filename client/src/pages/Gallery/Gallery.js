@@ -1,7 +1,7 @@
 import React from "react";
 
 // navbar component
-import Navigation from "../../components/Navigation";
+import Navigation from "../../components/Navigation/Navigation";
 
 const Gallery = () => (
 
