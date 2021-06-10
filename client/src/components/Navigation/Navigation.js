@@ -47,8 +47,8 @@ class Navigation extends Component {
               <div class="buttons">
                 <button
                   onClick={this.onLogoutClick}
-                  className="btn btn-large waves-effect waves-light hoverable blue accent-3">
-                  Logout
+                  className="button is-light">
+                  <strong>LOGOUT</strong>
             </button>
               </div>
             </div>
