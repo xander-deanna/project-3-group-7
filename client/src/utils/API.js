@@ -1,19 +1,25 @@
 import axios from "axios";
-
+// import { func } from "prop-types";
+//searches API
 export default {
     // gets artwork by artist
-    getArt: function (query) {
+    artByArtist: function (query) {
         return axios.get(`https://api.artsy.net/api/artists/${query}`);
     },
-    // saves a work of art to user's gallery
-//Need to create a route and appropriate controller for this route
-
-    saveArt: function (artData) {
-         return axios.post("/api/books/", artData);
-       },
-
-    // 
-    // getArt: function (query) {
-    //     return axios.get(`https://api.artsy.net/api/artists/${query}`);
-    // }
-}
+    //save art to db
+    saveArt: function(artData) {
+        return axios.post("/api/artists", artData);
+    },
+    //get saved art from db
+    getArtDB: function() {
+        return axios.get("/api/artists");
+    },
+    //get saved art with ID
+    getArt: function(id) {
+        return axios.get("api/artists/" + id);
+    },
+    //delete art by ID
+    deleteArt: function(id) {
+        return axios.delete("/api/artists/" + id);
+    }
+};
