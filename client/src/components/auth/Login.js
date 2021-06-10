@@ -76,28 +76,30 @@ class Login extends Component {
                   error={errors.email}
                   id="email"
                   type="email"
+                  placeholder="email"
                   className={classnames("", {
                     invalid: errors.email || errors.emailnotfound
                   })}
                 />
-                <label htmlFor="email">Email</label>
+                <label htmlFor="email"></label>
                 <span className="red-text">
                   {errors.email}
                   {errors.emailnotfound}
                 </span>
               </div>
-              <div className="input-field col s12">
+              <div className="input-field col s12 ">
                 <input
                   onChange={this.onChange}
                   value={this.state.password}
                   error={errors.password}
                   id="password"
                   type="password"
+                  placeholder="Password"
                   className={classnames("", {
                     invalid: errors.password || errors.passwordincorrect
                   })}
                 />
-                <label htmlFor="password">Password</label>
+                <label htmlFor="password"></label>
                 <span className="red-text">
                   {errors.password}
                   {errors.passwordincorrect}
