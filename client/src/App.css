@@ -1,38 +1,54 @@
-.App {
-  text-align: center;
+/* Global Font */
+* {
+  font-family: 'Cairo', sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* brand colors */
+.logo-blue {
+  color: #0099bb;
+}
+.brand-orange {
+  color: #d57700
+}
+.brand-dark-orange {
+  color: #bf5700
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* ---------- navbar styling ---------- */
+/* basic */
+.navbar {
+  border-bottom: 1px solid black;
+  margin-bottom: 30px;
+}
+a.nav-link {
+  color: #222222;
+}
+a.navbar-item {
+  background-color: #ffffff;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/* on hover */
+a.nav-link:hover {
+  color: #ffffff;
+}
+a.navbar-item:hover {
+  color: #ffffff;
+  background-color: #4a4a4a;
 }
 
-.App-link {
-  color: #61dafb;
+/* active */
+a.nav-link:active {
+  color: #ffffff;
+}
+a.navbar-item:active {
+  color: #ffffff;
+  background-color: #0099bb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Explore page styling */
+
+.card {
+  width: 300px;
+  height: auto;
+  margin: 20px
 }
