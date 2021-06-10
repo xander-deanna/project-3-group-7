@@ -44,3 +44,11 @@ a.navbar-item:active {
   color: #ffffff;
   background-color: #0099bb;
 }
+
+/* Explore page styling */
+
+.card {
+  width: 300px;
+  height: auto;
+  margin: 20px
+}

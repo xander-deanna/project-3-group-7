@@ -1,5 +1,9 @@
 import React, { Component } from "react";
-import Navigation from "../../components/Navigation/Navigation";
+import Navigation from "../../components/Navigation/Navigation.js";
+import ExploreCard from "../../components/ExploreCard.js";
+import { Form } from 'react-bulma-components';
+const { Field, Control, Input } = Form;
+
 import API from "../../utils/API"
 
 export default class Explore extends Component {
@@ -18,9 +22,18 @@ export default class Explore extends Component {
         return (
             <div>
                 <Navigation/>
-                <h3>Explore</h3>
-                <label>Search Artist/search paiting</label>
-                <input></input>
+                <Field>
+                    <Control className="has-icons-left">
+                    <Input
+                        placeholder="Search your favorite artists here."
+                        type="text"
+                        color="dark"
+                    />
+                    </Control>
+                </Field>
+
+                {/* Test Card */}
+                <ExploreCard/>
             </div>
         );
     }
