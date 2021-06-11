@@ -34,11 +34,28 @@ artCreate = (req, res) => {
         message: 'Art not saved.'
       })
     })
+}
 
+artRemove = async (req, res) => {
+  await Art.findOneAndDelete({_id: req.params.id}, (err, art) => {
+    if (err) {
+      return res.status(400).json({ success: false, error: err })
+    }
+    if (!art) {
+      return res
+          .status(404)
+          .json({ success: false, error: `Art not found`})
+    }
+
+    return res.status(200).json({ success: true, data: art })
+
+  }).catch(err => console.log(err))
 
 }
 
 module.exports = {
   artCreate,
+  findAll,
+  artRemove,
 }
 // artRemove
