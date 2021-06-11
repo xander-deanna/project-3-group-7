@@ -4,49 +4,67 @@ import axios from "axios";
 const clientID = '5b7eb2568e3b3f888f85';
 const clientSecret = '7941b6cc8fec588390fdb67abdc32930';
 const tokenUrl = 'https://api.artsy.net/api/tokens/xapp_token?';
-let xappToken;
-
 const url = 'https://api.artsy.net/api/';
+var xappToken;
+var expiration;
+
+// need a way to check if token is expired, if expired, run getToken() again to get a new token
 
 // global variables for Artist
 var artistId;
 var artistName;
 var imageArray = [];
 
-// there needs to be an onClick function in the search that calls getToken and getArtist
+// there needs to be an onClick function in the search that calls getArtist, getArt and getArtwork should be called in a chain reaction
 
 export default {
-
     // gets API token
     getToken: function () {
         return axios.post(`${tokenUrl}client_id=${clientID}&client_secret=${clientSecret}`)
             .done(function (res) {
                 xappToken = res.token;
+                expiration = res.expires_at;
+                console.log('token: ', xappToken)
+                console.log('expiration: ', expiration)
             })
     },
 
-    // Artsy API call to get artist name and ID
+    // Artsy API call to get artist name and ID - this will be searched with searched on explore page
     getArtist: function (query) {
-        return axios.get(`${url}search?q=(${query})`)
+        return axios.get(`${url}search?q=(${query})`, {
+            // sets headers to present token
+            headers: {
+                'X-xapp-token': xappToken,
+            }
+        })
             .done(function (data) {
                 artistId = data._embedded.results.filter(function (item) {
                     return item.type === 'artist';
-                  })[0]._links.self.href.split('/').pop();
-            
-                  getArt(artistId);
+                })[0]._links.self.href.split('/').pop();
+                console.log('artistId: ', artistId)
+                getArt(artistId);
+                  
             
                 artistName = data._embedded.results.filter(function (item) {
                     return item.type === 'artist';
-                  })[0].title;
+                })[0].title;
+                console.log('artistName: ', artistName)
             })
     },
 
     // Queries the API based on the artist ID and returns a list of all artworks
-    getArt: function (id) {
-        return axios.get(`${url}artworks?artist_id${id}`)
+    getArt: function (artistId) {
+        return axios.get(`${url}artworks?artist_id=${artistId}`, {
+            // sets headers to present token
+            headers: {
+                'X-xapp-token': xappToken,
+            }
+        })
             .done(function (results) {
                 if (results._embedded.artworks.length == 0) {
-                    console.log("No art found!");
+                    console.log("No art found! (ME)seum is only able to search public works, please try another artist.")
+                    // noArtFound()
+                    ;
                 }
                 for (var i = 0; i < results._embedded.artworks.length; i++) {
                     var arrayId = results._embedded.artworks[i].id;
@@ -56,9 +74,14 @@ export default {
         )
     },
 
-    // Takes each artwork id, takes the details of each piece, adds to an object which is then pushed to the array
+    // Takes each artwork ID, takes the details of each piece, adds to an object which is then pushed to the array
     getArtwork: function (id, counter) {
-        return axios.get(`${url}/artworks/${id}`)
+        return axios.get(`${url}/artworks/${id}`, {
+            // sets headers to present token
+            headers: {
+                'X-xapp-token': xappToken,
+            }
+        })
             .done(function (results) {
                 var id = results.id;
                 var image = results._links.thumbnail.href;
@@ -74,6 +97,7 @@ export default {
                   date: date,
                   medium: medium,
                 });
+                console.log('Image Array: ', imageArray)
             })
     },
 
