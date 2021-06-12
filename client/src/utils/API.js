@@ -71,39 +71,40 @@ export default {
                     // noArtFound()
                 ;
             }
-
-            // for loop that searchs the the API for artworks based on the artwork ID
-            // currently limited to 3 due to API rate limiting, working on work-arround
-            // also need to move for loop so it only executes if there is at least one artwork returned
-            for (var i = 0; i < 3; i++) {
-                var arrayId = results.data._embedded.artworks[i].id;
-                axios.get(`${url}/artworks/${arrayId}`, {
-                    // sets headers to present token
-                    headers: {
-                        'X-xapp-token': xappToken,
+            else { 
+                // for loop that searchs the the API for artworks based on the artwork ID
+                // currently limited to 3 due to API rate limiting, working on work-arround
+                setTimeout(() => {  
+                    for (var i = 0; i < 5; i++) {
+                        var arrayId = results.data._embedded.artworks[i].id;
+                        axios.get(`${url}/artworks/${arrayId}`, {
+                            // sets headers to present token
+                            headers: {
+                                'X-xapp-token': xappToken,
+                            }
+                        })
+                        // pushes final results into imageArray to use in the front end
+                        .then(function (results) {
+                            var id = results.data.id;
+                            var image = results.data._links.thumbnail.href;
+                            var title = results.data.title;
+                            var date = results.data.date;
+                            var medium = results.data.medium;
+                        
+                            imageArray.push({
+                                arrayId: i,
+                                imgId: id,
+                                imgUrl: image,
+                                title: title,
+                                date: date,
+                                medium: medium,
+                                artistName: artistName
+                            });
+                        })
                     }
-                })
-                // pushes final results into imageArray to use in the front end
-                .then(function (results) {
-                    var id = results.data.id;
-                    var image = results.data._links.thumbnail.href;
-                    var title = results.data.title;
-                    var date = results.data.date;
-                    var medium = results.data.medium;
-                  
-                    imageArray.push({
-                        arrayId: i,
-                        imgId: id,
-                        imgUrl: image,
-                        title: title,
-                        date: date,
-                        medium: medium,
-                        artistName: artistName
-                        });
-                    })
-                }
+                }, 1000)
             }
-        )    
+        })    
     },
 
     // save art to db
