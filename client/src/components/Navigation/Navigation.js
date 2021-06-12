@@ -42,9 +42,9 @@ class Navigation extends Component {
               <Link className="nav-link" to={"/gallery"}><strong>GALLERY</strong></Link>
             </Navbar.Item>
           </Navbar.Container>
-          <div class="navbar-end">
-            <div class="navbar-item">
-              <div class="buttons">
+          <div className="navbar-end">
+            <div className="navbar-item">
+              <div className="buttons">
                 <button
                   onClick={this.onLogoutClick}
                   className="button is-light">

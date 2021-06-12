@@ -5,8 +5,8 @@ const clientID = '5b7eb2568e3b3f888f85';
 const clientSecret = '7941b6cc8fec588390fdb67abdc32930';
 const tokenUrl = 'https://api.artsy.net/api/tokens/xapp_token?';
 const url = 'https://api.artsy.net/api/';
-var xappToken;
-var expiration;
+let xappToken;
+let expiration;
 
 // need a way to check if token is expired, if expired, run getToken() again to get a new token
 
@@ -38,19 +38,20 @@ export default {
                 'X-xapp-token': xappToken,
             }
         })
-            .then(function (data) {
-                artistId = data._embedded.results.filter(function (item) {
-                    return item.type === 'artist';
-                })[0]._links.self.href.split('/').pop();
-                console.log('artistId: ', artistId)
-                getArt(artistId);
+            .then (console.log('search is working'))
+            // (function (data) {
+            //     artistId = data._embedded.results.filter(function (item) {
+            //         return item.type === 'artist';
+            //     })[0]._links.self.href.split('/').pop();
+            //     console.log('artistId: ', artistId)
+            //     getArt(artistId);
                   
             
-                artistName = data._embedded.results.filter(function (item) {
-                    return item.type === 'artist';
-                })[0].title;
-                console.log('artistName: ', artistName)
-            })
+            //     artistName = data._embedded.results.filter(function (item) {
+            //         return item.type === 'artist';
+            //     })[0].title;
+            //     console.log('artistName: ', artistName)
+            // })
     },
 
     // Queries the API based on the artist ID and returns a list of all artworks

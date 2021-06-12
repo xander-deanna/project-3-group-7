@@ -5,25 +5,41 @@ import { Form } from 'react-bulma-components';
 const { Field, Control, Input } = Form;
 
 import API from "../../utils/API"
-// import getToken from "../../../../controllers/token-controller"
 
 export default class Explore extends Component {
-//     attempting to create new token on page   
+    state = {
+        value: "",
+        artworks: [],
+        search: ""
+    };
+
+    // creates new token on page load
     componentDidMount() {
         window.addEventListener('load', API.getToken());
      }
 
-    artSave = id => {
-        //select the current art by id and assign its value to variable art
-        const art = 
-        //API call to post id to backend 
-        API.saveArt(
-            //art details object goes here
-            ). then(() => {
-            //write codes for what you want to happen after the art has been posted to datatbase
-            }
-            )
+    // runs getArtist from API.js with the input from our searchbar
+    searchArt = query => {
+        API.getArtist(query)
     }
+    
+    // takes in the input from the searchbar (???maybe???)
+    handleInputChange = event => {
+        const name = event.target.name;
+        const value = event.target.value;
+        this.setState({
+            [name]: value
+        });
+        console.log(event.target)
+    };
+
+    // executes searchArt on submit
+    handleFormSubmit = event => {
+        event.preventDefault();
+        this.searchArt(this.state.search);
+        console.log(this.state.search)
+    };
+
     render() {
         return (
             <div>
@@ -31,10 +47,14 @@ export default class Explore extends Component {
                 <Field>
                     <Control className="has-icons-left">
                     <Input
+                        search={this.state.search}
+                        handleInputChange={this.handleInputChange}
+                        handleFormSubmit={this.handleFormSubmit}
                         placeholder="Search your favorite artists here."
                         type="text"
                         color="dark"
                     />
+                    
                     </Control>
                 </Field>
 
@@ -44,8 +64,3 @@ export default class Explore extends Component {
         );
     }
 }
-
-//api call 
-//have star option to save
-//database componenet
-//card render, for each search show the paiting in multiple cards(title, pic, etc)
