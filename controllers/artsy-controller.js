@@ -52,13 +52,13 @@ artRemove = async (req, res) => {
 
 }
 
-findAll = async (req, res) => {
+findAllArt = async (req, res) => {
   res.status(200).json({success: false})
 }
 
 module.exports = {
   artCreate,
-  findAll,
+  findAllArt,
   artRemove,
 }
 // artRemove
