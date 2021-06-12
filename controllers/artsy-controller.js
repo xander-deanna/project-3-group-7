@@ -3,7 +3,6 @@ const Art = require('../models/artsy')
 
 artCreate = (req, res) => {
   const body = req.body
-  console.log(req.body)
   
   if (!body) {
     return res.status(400).json({
@@ -12,7 +11,6 @@ artCreate = (req, res) => {
     })
   }
   const art = new Art(body)
-  console.log("art body")
 
   if (!art) {
     return res.status(400).json({success: false, error: err})
@@ -52,13 +50,23 @@ artRemove = async (req, res) => {
 
 }
 
-findAll = async (req, res) => {
-  res.status(200).json({success: false})
+findAllArt = async (req, res) => {
+  await Art.find({}, (err, arts) => {
+    if (err) {
+        return res.status(400).json({ success: false, error: err })
+    }
+    if (!arts.length) {
+        return res
+            .status(404)
+            .json({ success: false, error: `Art not found` })
+    }
+    return res.status(200).json({ success: true, data: arts })
+}).catch(err => console.log(err))
 }
 
 module.exports = {
   artCreate,
-  findAll,
+  findAllArt,
   artRemove,
 }
 // artRemove
