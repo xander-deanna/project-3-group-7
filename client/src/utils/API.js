@@ -29,7 +29,7 @@ export default {
     },
 
     // Artsy API call to search based on artist name
-    getArtist: function (query) {
+    getArtist: function (query, callback) {
         return axios.get(`${url}search?q=(${query})`, {
             // sets headers to present token
             headers: {
@@ -103,34 +103,12 @@ export default {
                                 medium: medium,
                                 artistName: artistName
                             });
+                            callback(imageArray);
                         })
                     }
                 }, 1000)
             }
         })    
-    },
-
-    // save art to db
-    // will need to create button for this on explore card
-    saveArt: function(artData) {
-        return axios.post('/api/artists', artData);
-    },
-
-    // get saved art from db
-    // should be called automatically upon rendering of gallery page
-    getArtDB: function() {
-        return axios.get('/api/artists');
-    },
-
-    // get saved art with ID
-    // we may not need this one?
-    getArtDB: function(id) {
-        return axios.get('api/artists/' + id);
-    },
-
-    // delete art by ID
-    // will need to create button for this on gallery card
-    deleteArt: function(id) {
-        return axios.delete('/api/artists/' + id);
     }
+
 };
