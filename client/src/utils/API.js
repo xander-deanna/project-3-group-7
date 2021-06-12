@@ -11,18 +11,16 @@ let expiration;
 // need a way to check if token is expired, if expired, run getToken() again to get a new token
 
 // global variables for Artist
-var artistId;
-var artistName;
-var imageArray = [];
-
-// there needs to be an onClick function in the search that calls getArtist, getArt and getArtwork should be called in a chain reaction
+let artistId;
+let artistName;
+let imageArray = [];
 
 export default {
-    // gets API token
+    // gets API token, is called on page reload
     getToken: function () {
         return axios.post(`${tokenUrl}client_id=${clientID}&client_secret=${clientSecret}`)
             .then(function (res) {
-                console.log(res)
+                console.log('token data object: ', res)
                 xappToken = res.data.token;
                 expiration = res.data.expires_at;
                 console.log('token: ', xappToken)
@@ -30,7 +28,7 @@ export default {
             })
     },
 
-    // Artsy API call to get artist name and ID - this will be searched with searched on explore page
+    // Artsy API call to search based on artist name
     getArtist: function (query) {
         return axios.get(`${url}search?q=(${query})`, {
             // sets headers to present token
@@ -38,68 +36,78 @@ export default {
                 'X-xapp-token': xappToken,
             }
         })
-            .then(function (data) {
-                artistId = data.data._embedded.results.filter(function (item) {
-                    return item.type === 'artist';
-                })[0]._links.self.href.split('/').pop();
-                console.log('artistId: ', artistId)
-                getArt(artistId);
-                  
-            
-                artistName = data._embedded.results.filter(function (item) {
-                    return item.type === 'artist';
-                })[0].title;
-                console.log('artistName: ', artistName)
-            })
-    },
 
-    // Queries the API based on the artist ID and returns a list of all artworks
-    getArt: function (artistId) {
-        return axios.get(`${url}artworks?artist_id=${artistId}`, {
-            // sets headers to present token
-            headers: {
-                'X-xapp-token': xappToken,
-            }
+        // returns only results of type "artist", grabs artist ID and name
+        .then(function (data) {
+            console.log('artist data object: ', data)
+
+            // artistId
+            artistId = data.data._embedded.results.filter(function (item) {
+                return item.type === 'artist';
+            })[0]._links.self.href.split('/').pop();
+            console.log('artistId: ', artistId)
+
+            // artistName
+            artistName = data.data._embedded.results.filter(function (item) {
+                return item.type === 'artist';
+            })[0].title;
+            console.log('artistName: ', artistName)
+
+            // runs another axios get request to search artworks using the artistId we just grabbed
+            return axios.get(`${url}artworks?artist_id=${artistId}`, {
+                // sets headers to present token
+                headers: {
+                    'X-xapp-token': xappToken,
+                }
+            })
         })
-            .then(function (results) {
-                if (results._embedded.artworks.length == 0) {
-                    console.log("No art found! (ME)seum is only able to search public works, please try another artist.")
+
+        // gets the results of above
+        .then(function (results) {
+        console.log('results of searching artworks by artist ID: ', results)
+        console.log('Image Array: ', imageArray)
+            if (results.data._embedded.artworks.length == 0) {
+                console.log("No art found! (ME)seum is only able to search public works, please try another artist.")
                     // noArtFound()
-                    ;
-                }
-                for (var i = 0; i < results._embedded.artworks.length; i++) {
-                    var arrayId = results._embedded.artworks[i].id;
-                    getArtwork(arrayId, i);
-                }
+                ;
             }
-        )
-    },
-
-    // Takes each artwork ID, takes the details of each piece, adds to an object which is then pushed to the array
-    getArtwork: function (id, counter) {
-        return axios.get(`${url}/artworks/${id}`, {
-            // sets headers to present token
-            headers: {
-                'X-xapp-token': xappToken,
+            else { 
+                // for loop that searchs the the API for artworks based on the artwork ID
+                // currently limited to 3 due to API rate limiting, working on work-arround
+                setTimeout(() => {
+                    let maxArtwork = 5;
+                    if (results.data._embedded.artworks.length <= 5) {
+                        maxArtwork = results.data._embedded.artworks.length
+                    }
+                    for (var i = 0; i < maxArtwork; i++) {
+                        var arrayId = results.data._embedded.artworks[i].id;
+                        axios.get(`${url}/artworks/${arrayId}`, {
+                            // sets headers to present token
+                            headers: {
+                                'X-xapp-token': xappToken,
+                            }
+                        })
+                        // pushes final results into imageArray to use in the front end
+                        .then(function (results) {
+                            var id = results.data.id;
+                            var image = results.data._links.thumbnail.href;
+                            var title = results.data.title;
+                            var date = results.data.date;
+                            var medium = results.data.medium;
+                        
+                            imageArray.push({
+                                imgId: id,
+                                imgUrl: image,
+                                title: title,
+                                date: date,
+                                medium: medium,
+                                artistName: artistName
+                            });
+                        })
+                    }
+                }, 1000)
             }
-        })
-            .then(function (results) {
-                var id = results.id;
-                var image = results._links.thumbnail.href;
-                var title = results.title;
-                var date = results.date;
-                var medium = results.medium;
-          
-                imageArray.push({
-                  arrayId: counter,
-                  imgId: id,
-                  imgUrl: image,
-                  title: title,
-                  date: date,
-                  medium: medium,
-                });
-                console.log('Image Array: ', imageArray)
-            })
+        })    
     },
 
     // save art to db
