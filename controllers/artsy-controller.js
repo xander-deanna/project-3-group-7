@@ -1,11 +1,9 @@
 const Art = require('../models/artsy')
-const { findAll } = require('../^untitled:Untitled-1')
-const { artRemove } = require('../^untitled:Untitled-1')
-const { artCreate } = require('../^untitled:Untitled-1')
 
 
 artCreate = (req, res) => {
   const body = req.body
+  console.log(req.body)
   
   if (!body) {
     return res.status(400).json({
@@ -14,9 +12,10 @@ artCreate = (req, res) => {
     })
   }
   const art = new Art(body)
+  console.log("art body")
 
   if (!art) {
-    return res.status(400).json({succe: false, error: err})
+    return res.status(400).json({success: false, error: err})
   }
 
   art 
@@ -51,6 +50,10 @@ artRemove = async (req, res) => {
 
   }).catch(err => console.log(err))
 
+}
+
+findAll = async (req, res) => {
+  res.status(200).json({success: false})
 }
 
 module.exports = {
