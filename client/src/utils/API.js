@@ -74,8 +74,12 @@ export default {
             else { 
                 // for loop that searchs the the API for artworks based on the artwork ID
                 // currently limited to 3 due to API rate limiting, working on work-arround
-                setTimeout(() => {  
-                    for (var i = 0; i < 5; i++) {
+                setTimeout(() => {
+                    let maxArtwork = 5;
+                    if (results.data._embedded.artworks.length <= 5) {
+                        maxArtwork = results.data._embedded.artworks.length
+                    }
+                    for (var i = 0; i < maxArtwork; i++) {
                         var arrayId = results.data._embedded.artworks[i].id;
                         axios.get(`${url}/artworks/${arrayId}`, {
                             // sets headers to present token
@@ -92,7 +96,6 @@ export default {
                             var medium = results.data.medium;
                         
                             imageArray.push({
-                                arrayId: i,
                                 imgId: id,
                                 imgUrl: image,
                                 title: title,
