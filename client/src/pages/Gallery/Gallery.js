@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import GalleryCard from "../../components/GalleryCard.js";
 
 // navbar component
 import Navigation from "../../components/Navigation/Navigation";
@@ -18,6 +19,7 @@ export default class Gallery extends Component {
             <div>
                 <Navigation />
                 <h3>Gallery</h3>
+                <GalleryCard/>
             </div>
         )
     }

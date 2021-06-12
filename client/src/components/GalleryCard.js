@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
-export default class ExploreCard extends Component {
-    artSave = id => {
+export default class GalleryCard extends Component {
+    deleteArt = id => {
         //select the current art by id and assign its value to variable art
         const art = 
         //API call to post id to backend 
@@ -13,13 +13,12 @@ export default class ExploreCard extends Component {
             )
     }
     render() {
-        console.log(this.props)
         return (
             <div className="columns is-mobile is-multiline is-centered">
                 <div className="card">
                     <div className="card-content">
                         <div className="media-center">
-                            <img src={this.props.imgUrl}/>
+                            <img src="https://www.guyhepner.com/wp-content/uploads/2016/02/Screen-Shot-2016-02-15-at-5.52.06-PM.png"/>
                         </div>
                         <br/>
                         <div className="content">

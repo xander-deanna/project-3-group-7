@@ -23,11 +23,6 @@ export default class Explore extends Component {
         window.addEventListener('load', API.getToken());
      }
 
-    // runs getArtist from API.js with the input from our searchbar
-    searchArt = query => {
-        API.getArtist(query)
-    }
-    
     // takes in the input from the searchbar (???maybe???)
     handleInputChange = event => {
         const value = event.target.value;
@@ -41,11 +36,12 @@ export default class Explore extends Component {
     // executes searchArt on submit
     handleFormSubmit = event => {
         event.preventDefault();
-        this.searchArt(this.state.search);
+        API.getArtist(this.state.search, (imageArray) => {this.setState({artworks: imageArray})});
         console.log(this.state.search)
     };
 
     render() {
+        console.log(this.state.artworks)
         return (
             <div>
                 <Navigation/>
@@ -65,7 +61,9 @@ export default class Explore extends Component {
                 </form>
 
                 {/* Test Card */}
-                <ExploreCard/>
+                {this.state.artworks.map((value, index) => {
+                    return <ExploreCard {...value} key={index}/>
+                })}
             </div>
         );
     }

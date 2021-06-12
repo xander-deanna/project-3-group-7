@@ -13,7 +13,6 @@ let expiration;
 // global variables for Artist
 let artistId;
 let artistName;
-let imageArray = [];
 
 export default {
     // gets API token, is called on page reload
@@ -65,7 +64,6 @@ export default {
         // gets the results of above
         .then(function (results) {
         console.log('results of searching artworks by artist ID: ', results)
-        console.log('Image Array: ', imageArray)
             if (results.data._embedded.artworks.length == 0) {
                 console.log("No art found! (ME)seum is only able to search public works, please try another artist.")
                     // noArtFound()
@@ -79,36 +77,45 @@ export default {
                     if (results.data._embedded.artworks.length <= 5) {
                         maxArtwork = results.data._embedded.artworks.length
                     }
+                    let promises = [];
+
                     for (var i = 0; i < maxArtwork; i++) {
                         var arrayId = results.data._embedded.artworks[i].id;
-                        axios.get(`${url}/artworks/${arrayId}`, {
+                        promises.push(axios.get(`${url}/artworks/${arrayId}`, {
                             // sets headers to present token
                             headers: {
                                 'X-xapp-token': xappToken,
                             }
-                        })
-                        // pushes final results into imageArray to use in the front end
-                        .then(function (results) {
-                            var id = results.data.id;
-                            var image = results.data._links.thumbnail.href;
-                            var title = results.data.title;
-                            var date = results.data.date;
-                            var medium = results.data.medium;
-                        
-                            imageArray.push({
-                                imgId: id,
-                                imgUrl: image,
-                                title: title,
-                                date: date,
-                                medium: medium,
-                                artistName: artistName
-                            });
-                            callback(imageArray);
-                        })
+                        }));
                     }
+                    axios.all(promises)
+                        // pushes final results into imageArray to use in the front end
+                        .then(axios.spread((...responses) => {
+                            let imageArray = []
+                            for (var i = 0; i <responses.length; i++) {
+                                let results = responses[i]
+                                var id = results.data.id;
+                                var image = results.data._links.thumbnail.href;
+                                var title = results.data.title;
+                                var date = results.data.date;
+                                var medium = results.data.medium;
+                        
+                                imageArray.push({
+                                    imgId: id,
+                                    imgUrl: image,
+                                    title: title,
+                                    date: date,
+                                    medium: medium,
+                                    artistName: artistName
+                                });
+                            }
+                            callback(imageArray)
+                        })
+                            
+                    
+                        )
                 }, 1000)
             }
         })    
     }
-
 };
