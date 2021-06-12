@@ -14,9 +14,9 @@ export default class ExploreCard extends Component {
     }
     render() {
         return (
-            <div class="columns is-mobile is-multiline is-centered">
+            <div className="columns is-mobile is-multiline is-centered">
                 <div className="card">
-                    <div class="card-content">
+                    <div className="card-content">
                         <div className="media-center">
                             <img src="https://www.guyhepner.com/wp-content/uploads/2016/02/Screen-Shot-2016-02-15-at-5.52.06-PM.png"/>
                         </div>

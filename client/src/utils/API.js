@@ -21,9 +21,10 @@ export default {
     // gets API token
     getToken: function () {
         return axios.post(`${tokenUrl}client_id=${clientID}&client_secret=${clientSecret}`)
-            .done(function (res) {
-                xappToken = res.token;
-                expiration = res.expires_at;
+            .then(function (res) {
+                console.log(res)
+                xappToken = res.data.token;
+                expiration = res.data.expires_at;
                 console.log('token: ', xappToken)
                 console.log('expiration: ', expiration)
             })
@@ -37,7 +38,7 @@ export default {
                 'X-xapp-token': xappToken,
             }
         })
-            .done(function (data) {
+            .then(function (data) {
                 artistId = data._embedded.results.filter(function (item) {
                     return item.type === 'artist';
                 })[0]._links.self.href.split('/').pop();
@@ -60,7 +61,7 @@ export default {
                 'X-xapp-token': xappToken,
             }
         })
-            .done(function (results) {
+            .then(function (results) {
                 if (results._embedded.artworks.length == 0) {
                     console.log("No art found! (ME)seum is only able to search public works, please try another artist.")
                     // noArtFound()
@@ -82,7 +83,7 @@ export default {
                 'X-xapp-token': xappToken,
             }
         })
-            .done(function (results) {
+            .then(function (results) {
                 var id = results.id;
                 var image = results._links.thumbnail.href;
                 var title = results.title;

@@ -5,8 +5,14 @@ import { Form } from 'react-bulma-components';
 const { Field, Control, Input } = Form;
 
 import API from "../../utils/API"
+// import getToken from "../../../../controllers/token-controller"
 
 export default class Explore extends Component {
+//     attempting to create new token on page   
+    componentDidMount() {
+        window.addEventListener('load', API.getToken());
+     }
+
     artSave = id => {
         //select the current art by id and assign its value to variable art
         const art = 
