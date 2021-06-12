@@ -3,13 +3,14 @@ const Art = require('../models/artsy')
 
 artCreate = (req, res) => {
   const body = req.body
-  
+
   if (!body) {
     return res.status(400).json({
       success: false,
       error: 'Please enter a valid artist search',
     })
   }
+  body.userId = req.user._id
   const art = new Art(body)
 
   if (!art) {
@@ -51,11 +52,8 @@ artRemove = async (req, res) => {
 }
 //GALLERY with user auth, find all user saved art
 findAllArt = async (req, res) => {
-  //check if there is a return user
-  if (req.user == undefined) {
-    res.status(401).json({ success: false })
-    //bulma
-  } else {
+
+
     await Art.find({ userId: req.user._id }, (err, arts) => {
       if (err) {
           return res.status(400).json({ success: false, error: err })
@@ -67,9 +65,8 @@ findAllArt = async (req, res) => {
       }
       return res.status(200).json({ success: true, data: arts })
     }).catch(err => console.log(err))
-  }
-  //if no user ret 401 (dont know you)
-  //else find by user id
+  
+
   
 }
 
