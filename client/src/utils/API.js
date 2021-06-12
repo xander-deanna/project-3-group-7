@@ -38,20 +38,19 @@ export default {
                 'X-xapp-token': xappToken,
             }
         })
-            .then (console.log('search is working'))
-            // (function (data) {
-            //     artistId = data._embedded.results.filter(function (item) {
-            //         return item.type === 'artist';
-            //     })[0]._links.self.href.split('/').pop();
-            //     console.log('artistId: ', artistId)
-            //     getArt(artistId);
+            .then(function (data) {
+                artistId = data.data._embedded.results.filter(function (item) {
+                    return item.type === 'artist';
+                })[0]._links.self.href.split('/').pop();
+                console.log('artistId: ', artistId)
+                getArt(artistId);
                   
             
-            //     artistName = data._embedded.results.filter(function (item) {
-            //         return item.type === 'artist';
-            //     })[0].title;
-            //     console.log('artistName: ', artistName)
-            // })
+                artistName = data._embedded.results.filter(function (item) {
+                    return item.type === 'artist';
+                })[0].title;
+                console.log('artistName: ', artistName)
+            })
     },
 
     // Queries the API based on the artist ID and returns a list of all artworks

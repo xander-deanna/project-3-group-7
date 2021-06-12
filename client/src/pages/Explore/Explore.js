@@ -7,11 +7,16 @@ const { Field, Control, Input } = Form;
 import API from "../../utils/API"
 
 export default class Explore extends Component {
-    state = {
-        value: "",
-        artworks: [],
-        search: ""
-    };
+    constructor (props) {
+        super(props);
+        this.state = {
+            value: "",
+            artworks: [],
+            search: ""
+        };
+        this.handleInputChange = this.handleInputChange.bind(this)
+        this.handleFormSubmit = this.handleFormSubmit.bind(this)
+    }
 
     // creates new token on page load
     componentDidMount() {
@@ -25,12 +30,12 @@ export default class Explore extends Component {
     
     // takes in the input from the searchbar (???maybe???)
     handleInputChange = event => {
-        const name = event.target.name;
         const value = event.target.value;
         this.setState({
-            [name]: value
+            search: value
         });
         console.log(event.target)
+        console.log(this.state)
     };
 
     // executes searchArt on submit
@@ -44,19 +49,20 @@ export default class Explore extends Component {
         return (
             <div>
                 <Navigation/>
-                <Field>
-                    <Control className="has-icons-left">
-                    <Input
-                        search={this.state.search}
-                        handleInputChange={this.handleInputChange}
-                        handleFormSubmit={this.handleFormSubmit}
-                        placeholder="Search your favorite artists here."
-                        type="text"
-                        color="dark"
-                    />
-                    
-                    </Control>
-                </Field>
+                <form onSubmit={this.handleFormSubmit}>
+                    <Field>
+                        <Control className="has-icons-left">
+                        <Input
+                            search={this.state.search}
+                            onChange={this.handleInputChange}
+                            placeholder="Search your favorite artists here."
+                            type="text"
+                            color="dark"
+                        />
+                        
+                        </Control>
+                    </Field>
+                </form>
 
                 {/* Test Card */}
                 <ExploreCard/>
