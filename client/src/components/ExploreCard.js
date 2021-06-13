@@ -19,23 +19,27 @@ export default class ExploreCard extends Component {
                 <div className="card">
                     <div className="card-content">
                         <div className="media-center">
-                            <img src={this.props.imgUrl}/>
+                            <img className="artsy-img"src={this.props.imgUrl}/>
                         </div>
                         <br/>
                         <div className="content">
-                            <strong>Andy Warhol</strong><br/>
-                            <em>Marilyn Monroe 29</em>
+                            <strong>{this.props.artistName}</strong><br/>
+                            <em>{this.props.title}</em>
                             <ul>
                                 <li>
-                                    Medium
+                                    {this.props.date}
                                 </li>
                                 <li>
-                                    Year
+                                    {this.props.medium}
                                 </li>
                                 <li>
-                                    Dimensions
+                                    {this.props.dimensions}
                                 </li>
                             </ul>
+                            <button className="button is-light is-primary is-pulled-right save-btn">
+                                <i className="fas fa-star"></i>
+                            </button>
+                            <br/>
                         </div>
                     </div>
                 </div>
