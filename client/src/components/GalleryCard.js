@@ -1,40 +1,46 @@
 import React, { Component } from "react";
 
-export default class GalleryCard extends Component {
-    deleteArt = id => {
+import Meseum from "../utils/meseum-api";
+
+
+export default class ExploreCard extends Component {
+    artDelete = id => {
         //select the current art by id and assign its value to variable art
-        const art = 
+        
         //API call to post id to backend 
-        API.saveArt(
-            //art details object goes here
-            ). then(() => {
+        Meseum.deleteArt(this.props._id).then((res) => {
+            console.log(res)
             //write codes for what you want to happen after the art has been posted to datatbase
-            }
-            )
+        })
     }
     render() {
+        console.log(this.props)
         return (
             <div className="columns is-mobile is-multiline is-centered">
                 <div className="card">
                     <div className="card-content">
                         <div className="media-center">
-                            <img src="https://www.guyhepner.com/wp-content/uploads/2016/02/Screen-Shot-2016-02-15-at-5.52.06-PM.png"/>
+                            <img className="artsy-img"src={this.props.imgUrl}/>
                         </div>
                         <br/>
                         <div className="content">
-                            <strong>Andy Warhol</strong><br/>
-                            <em>Marilyn Monroe 29</em>
+                            <strong>{this.props.artistName}</strong><br/>
+                            <em>{this.props.title}</em>
                             <ul>
                                 <li>
-                                    Medium
+                                    {this.props.date}
                                 </li>
                                 <li>
-                                    Year
+                                    {this.props.medium}
                                 </li>
                                 <li>
-                                    Dimensions
+                                    {this.props.dimensions}
                                 </li>
                             </ul>
+                            <button onClick={this.artDelete} className="button is-light is-primary is-pulled-right save-btn">
+                                <i className="fas fa-star"></i>
+                            </button>
+                            <br/>
                         </div>
                     </div>
                 </div>
