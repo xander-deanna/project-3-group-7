@@ -10,11 +10,14 @@ artCreate = (req, res) => {
       error: 'Please enter a valid artist search',
     })
   }
-  body.userId = req.user._id
+  if(!req.session.loggedIn) {
+    return res.status(401).json({success: false})
+  }
+  body.userId = req.session.userId
   const art = new Art(body)
 
   if (!art) {
-    return res.status(400).json({success: false, error: err})
+    return res.status(400).json({success: false})
   }
 
   art 
@@ -35,6 +38,9 @@ artCreate = (req, res) => {
 }
 
 artRemove = async (req, res) => {
+  if(!req.session.loggedIn) {
+    return res.status(401).json({success: false})
+  }
   await Art.findOneAndDelete({_id: req.params.id}, (err, art) => {
     if (err) {
       return res.status(400).json({ success: false, error: err })
@@ -53,8 +59,10 @@ artRemove = async (req, res) => {
 //GALLERY with user auth, find all user saved art
 findAllArt = async (req, res) => {
 
-
-    await Art.find({ userId: req.user._id }, (err, arts) => {
+    if(!req.session.loggedIn) {
+      return res.status(401).json({success: false})
+    }
+    await Art.find({ userId: req.session.userId }, (err, arts) => {
       if (err) {
           return res.status(400).json({ success: false, error: err })
       }

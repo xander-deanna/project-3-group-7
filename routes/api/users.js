@@ -3,7 +3,6 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const keys = require("../../config/keys");
-const passport = require("passport");
 
 // Load input validation
 const validateRegisterInput = require("../../validation/register");
@@ -82,21 +81,9 @@ router.post("/login", (req, res) => {
           id: user.id,
           name: user.name
         };
-
-        // Sign token
-        jwt.sign(
-          payload,
-          keys.secretOrKey,
-          {
-            expiresIn: 31556926 // 1 year in seconds
-          },
-          (err, token) => {
-            res.json({
-              success: true,
-              token: "Bearer " + token
-            });
-          }
-        );
+        req.session.loggedIn = true
+        req.session.userId = user._id
+        res.status(200).json({ success: true, userId: user._id })
       } else {
         return res
           .status(400)
@@ -105,5 +92,11 @@ router.post("/login", (req, res) => {
     });
   });
 });
+
+router.post("/logout", (req, res) => {
+  req.session.destroy(() => {
+    res.status(200).json({ success: true })
+  })
+})
 
 module.exports = router;
