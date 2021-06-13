@@ -60,7 +60,6 @@ export default class Explore extends Component {
                     </Field>
                 </form>
 
-                {/* Test Card */}
                 {this.state.artworks.map((value, index) => {
                     return <ExploreCard {...value} key={index}/>
                 })}

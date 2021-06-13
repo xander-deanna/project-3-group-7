@@ -1,16 +1,24 @@
 import React, { Component } from "react";
 
+import Meseum from "../utils/meseum-api";
+
+
 export default class ExploreCard extends Component {
     artSave = id => {
         //select the current art by id and assign its value to variable art
-        const art = 
+        const art = {
+            title: this.props.title,
+            artist: this.props.artistName,
+            date: this.props.date,
+            medium: this.props.medium,
+            dimensions: this.props.dimensions,
+            imgUrl: this.props.imgUrl
+        }
         //API call to post id to backend 
-        API.saveArt(
-            //art details object goes here
-            ). then(() => {
+        Meseum.saveArt(art). then((res) => {
+            console.log(res)
             //write codes for what you want to happen after the art has been posted to datatbase
-            }
-            )
+        })
     }
     render() {
         console.log(this.props)
@@ -36,7 +44,7 @@ export default class ExploreCard extends Component {
                                     {this.props.dimensions}
                                 </li>
                             </ul>
-                            <button className="button is-light is-primary is-pulled-right save-btn">
+                            <button onClick={this.artSave} className="button is-light is-primary is-pulled-right save-btn">
                                 <i className="fas fa-star"></i>
                             </button>
                             <br/>

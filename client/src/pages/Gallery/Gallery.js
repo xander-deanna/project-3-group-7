@@ -9,7 +9,7 @@ import Meseum from "../../utils/meseum-api";
 export default class Gallery extends Component {
     constructor (props) {
         super(props)
-        this.state = {}
+        this.state = {artworks: []}
         Meseum.getAllArt().then(res => {
             this.setState({artworks: res.data.data})
         })
@@ -19,7 +19,9 @@ export default class Gallery extends Component {
             <div>
                 <Navigation />
                 <h3>Gallery</h3>
-                <GalleryCard/>
+                {this.state.artworks.map((value, index) => {
+                    return <GalleryCard {...value} key={index}/>
+                })}
             </div>
         )
     }
