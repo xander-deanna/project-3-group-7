@@ -6,6 +6,13 @@ const { Field, Control, Input } = Form;
 
 import API from "../../utils/API"
 
+function NothingToDisplay(props) {
+    if (props.artworks.length == 0) {
+      return <strong>No artwork found</strong>;
+    }
+    return <div/>
+  }
+
 export default class Explore extends Component {
     constructor (props) {
         super(props);
@@ -59,6 +66,7 @@ export default class Explore extends Component {
                         {this.state.artworks.map((value, index) => {
                             return <ExploreCard {...value} key={index}/>
                         })}
+                        <NothingToDisplay artworks={this.state.artworks} />
                     </div>
                 </section>
             </div>
