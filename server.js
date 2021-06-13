@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const passport = require("passport");
 const users = require("./routes/api/users");
 const artRouter = require("./routes/api/art-router");
+const path = require("path");
 
 const app = express();
 
@@ -41,5 +42,9 @@ require("./config/passport")(passport);
 // Routes
 app.use("/api/users", users);
 app.use("/api/artists", artRouter);
+app.use(express.static(path.join(__dirname, 'client/build')));
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => console.log(`Server up and running on port ${PORT} !`));
