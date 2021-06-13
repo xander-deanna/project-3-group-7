@@ -15,7 +15,7 @@ function getToken (req) {
             resolve(req.session.artsyToken)
         })
     }
-    return axios.post(`${tokenUrl}client_id=${process.env.arstyClientID}&client_secret=${process.env.arstyClientSecret}`)
+    return axios.post(`${tokenUrl}client_id=${process.env.artsyClientID}&client_secret=${process.env.artsyClientSecret}`)
         .then(function (res) {
             req.session.artsyToken = res.data.token
             req.session.artsyExpire = res.data.expires_at
