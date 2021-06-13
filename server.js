@@ -6,6 +6,7 @@ const session = require("express-session");
 const MongoStore = require('connect-mongo');
 const users = require("./routes/api/users");
 const artRouter = require("./routes/api/art-router");
+const artsyRouter = require("./routes/api/artsy-router");
 const path = require("path");
 require("dotenv").config();
 
@@ -43,6 +44,7 @@ app.use(session({
 // Routes
 app.use("/api/users", users);
 app.use("/api/artists", artRouter);
+app.use("/api/artsy", artsyRouter);
 app.use(express.static(path.join(__dirname, 'client/build')));
 app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
