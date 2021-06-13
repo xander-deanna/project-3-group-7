@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require('body-parser');
+const session = require("express-session");
 const passport = require("passport");
 const users = require("./routes/api/users");
 const artRouter = require("./routes/api/art-router");
@@ -34,7 +35,9 @@ mongoose
   .catch(err => console.log(err));
 
 // Passport middleware
+app.use(session({ secret: "cats" }));
 app.use(passport.initialize());
+app.use(passport.session());
 
 // Passport config
 require("./config/passport")(passport);
