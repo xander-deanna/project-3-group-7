@@ -1,42 +1,39 @@
-import axios from "axios";
-
-// global variables for API call token
-const clientID = '5b7eb2568e3b3f888f85';
-const clientSecret = '7941b6cc8fec588390fdb67abdc32930';
+const axios = require("axios");
 const tokenUrl = 'https://api.artsy.net/api/tokens/xapp_token?';
 const url = 'https://api.artsy.net/api/';
 
-// need a way to check if token is expired, if expired, run getToken() again to get a new token
-
-// global variables for Artist
-let artistId;
-let artistName;
-
 // need to have token in request session
-app.use(express.session({ secret: xappToken }));
+// app.use(express.session({ secret: xappToken }));
 // figure out how passwort sessions work
 // use token in the backend api to call artsy
 // create one backend api for each get
+//  2021-06-20T19:15:14+00:00
 
-export default {
-    // gets API token, is called on page reload
-    getToken: function () {
-        return axios.post(`${tokenUrl}client_id=${clientID}&client_secret=${clientSecret}`)
-            .then(function (res) {
-                return {
-                    xappToken: res.data.token,
-                    expiration: res.data.expires_at,
-                }
-            })
-    },
+function getToken (req) {
+    if (req.session.artsyToken != undefined && Date(req.session.artsyExpire) > Date.now()) {
+        return new Promise((resolve, reject) => {
+            resolve(req.session.artsyToken)
+        })
+    }
+    return axios.post(`${tokenUrl}client_id=${process.env.arstyClientID}&client_secret=${process.env.arstyClientSecret}`)
+        .then(function (res) {
+            req.session.artsyToken = res.data.token
+            req.session.artsyExpire = res.data.expires_at
+            return {
+                xappToken: res.data.token,
+                expiration: res.data.expires_at,
+            }
+        })
+}
 
+module.exports = {
     // Artsy API call to search based on artist name
     getArtist: function (req, res) {
-        return this.getToken().then((token) => {
-            axios.get(`${url}search?q=(${req.query.query})`, {
+        return getToken(req).then((token) => {
+            axios.get(`${url}search?q=(${req.query.q})`, {
                 // sets headers to present token
                 headers: {
-                    'X-xapp-token': token.xappToken,
+                    'X-xapp-token': req.session.artsyToken,
                 }
             })
     
@@ -45,13 +42,13 @@ export default {
                 console.log('artist data object: ', data)
     
                 // artistId
-                artistId = data.data._embedded.results.filter(function (item) {
+                let artistId = data.data._embedded.results.filter(function (item) {
                     return item.type === 'artist';
                 })[0]._links.self.href.split('/').pop();
                 console.log('artistId: ', artistId)
     
                 // artistName
-                artistName = data.data._embedded.results.filter(function (item) {
+                let artistName = data.data._embedded.results.filter(function (item) {
                     return item.type === 'artist';
                 })[0].title;
                 console.log('artistName: ', artistName)
@@ -60,13 +57,22 @@ export default {
                 return axios.get(`${url}artworks?artist_id=${artistId}`, {
                     // sets headers to present token
                     headers: {
-                        'X-xapp-token': xappToken,
+                        'X-xapp-token': req.session.artsyToken,
                     }
+                })
+                .then(function (results) {
+                    return new Promise((resolve, reject) => {
+                        resolve([
+                            results, artistName
+                        ])
+                    })
                 })
             })
     
             // gets the results of above
-            .then(function (results) {
+            .then(function (completeResults) {
+            let results = completeResults[0]
+            let artistName = completeResults[1]
             console.log('results of searching artworks by artist ID: ', results)
                 if (results.data._embedded.artworks.length == 0) {
                     console.log("No art found! (ME)seum is only able to search public works, please try another artist.")
@@ -88,7 +94,7 @@ export default {
                             promises.push(axios.get(`${url}/artworks/${arrayId}`, {
                                 // sets headers to present token
                                 headers: {
-                                    'X-xapp-token': xappToken,
+                                    'X-xapp-token': req.session.artsyToken,
                                 }
                             }));
                         }
@@ -119,7 +125,11 @@ export default {
                             }))
                     }, 1000)
                 }
-            })    
-        })
+            })  
+        }).catch((err) => {
+            res.status(400).json({
+                success: false, error: err
+            })
+        }) 
     }
 };

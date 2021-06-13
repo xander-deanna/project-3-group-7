@@ -1,10 +1,7 @@
 const router = require("express").Router();
 
-const artsyAPI = require("../../controllers/artsy-api.js");
+const artsyAPI = require("../../controllers/arsty-api");
 
-
-router.get('/', artController.findAllArt)
-router.post('/', artController.artCreate)
-router.delete('/:id', artController.artRemove)
+router.get('/', artsyAPI.getArtist)
 
 module.exports = router;
