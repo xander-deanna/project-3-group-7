@@ -18,7 +18,7 @@ class Navigation extends Component {
     return (
       <Navbar>
         <Navbar.Brand>
-          <Navbar.Item>
+          <Navbar.Item renderAs="div">
             <Link className="nav-link logo" to={"/about"}><strong>(<strong className="logo-blue">ME</strong>)<strong>seum</strong></strong></Link>
 
           </Navbar.Item>
@@ -32,13 +32,13 @@ class Navigation extends Component {
           {/* -- end weird hackyness -- */}
 
           <Navbar.Container>
-            <Navbar.Item>
+            <Navbar.Item renderAs="div">
               <Link className="nav-link" to={"/about"}><strong>ABOUT</strong></Link>
             </Navbar.Item>
-            <Navbar.Item>
+            <Navbar.Item renderAs="div">
               <Link className="nav-link" to={"/explore"}><strong>EXPLORE</strong></Link>
             </Navbar.Item>
-            <Navbar.Item>
+            <Navbar.Item renderAs="div">
               <Link className="nav-link" to={"/gallery"}><strong>GALLERY</strong></Link>
             </Navbar.Item>
           </Navbar.Container>
@@ -49,7 +49,7 @@ class Navigation extends Component {
                   onClick={this.onLogoutClick}
                   className="button is-light">
                   <strong>LOGOUT</strong>
-            </button>
+                </button>
               </div>
             </div>
           </div>
