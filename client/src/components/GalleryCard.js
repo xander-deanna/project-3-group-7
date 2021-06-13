@@ -1,52 +1,50 @@
 import React, { Component } from "react";
-
+import Draggable from 'react-draggable';
 import Meseum from "../utils/meseum-api";
 
-
-export default class ExploreCard extends Component {
+export default class GalleryCard extends Component {
     artDelete = id => {
         //select the current art by id and assign its value to variable art
-        
-        //API call to post id to backend 
         let _id = this.props._id
         Meseum.deleteArt(this.props._id).then((res) => {
             console.log(res)
             this.props.updateState(_id)
-            //write codes for what you want to happen after the art has been posted to datatbase
         })
     }
+
     render() {
-        console.log(this.props)
+        // stops react-draggable effect when clicking delete button
+        const onStop = (e) => {
+            e.stopPropagation()
+        }
         return (
-            <div className="columns is-mobile is-multiline is-centered">
-                <div className="card">
-                    <div className="card-content">
-                        <div className="media-center">
-                            <img className="artsy-img"src={this.props.imgUrl}/>
-                        </div>
-                        <br/>
-                        <div className="content">
-                            <strong>{this.props.artistName}</strong><br/>
-                            <em>{this.props.title}</em>
-                            <ul>
-                                <li>
-                                    {this.props.date}
-                                </li>
-                                <li>
-                                    {this.props.medium}
-                                </li>
-                                <li>
-                                    {this.props.dimensions}
-                                </li>
-                            </ul>
-                            <button onClick={this.artDelete} className="button is-light is-primary is-pulled-right save-btn">
-                                <i className="fas fa-star"></i>
-                            </button>
-                            <br/>
-                        </div>
+            <Draggable className="card gallery-card" onStop={onStop}>
+                <div className="card-content">
+                    <div className="media-center art-frame">
+                        <img className="artsy-img-gallery"src={this.props.imgUrl}/>
+                    </div>
+                    <div className="content art-plaque">
+                        
+                        <ul className="art-plaque-content">
+                            <li>
+                            <em>{this.props.title}, <strong>{this.props.artistName}</strong><br/></em>
+                            </li>
+                            <li>
+                                {this.props.date}
+                            </li>
+                            <li>
+                                {this.props.medium}
+                            </li>
+                            <li>
+                                {this.props.dimensions}
+                            </li>
+                        </ul>
+                        <button onClick={this.artDelete} className="button is-light is-primary is-pulled-right save-btn">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
                     </div>
                 </div>
-            </div>
+            </Draggable>
         );
     }
 }

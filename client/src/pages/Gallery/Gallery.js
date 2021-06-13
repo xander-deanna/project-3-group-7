@@ -1,8 +1,6 @@
 import React, { Component } from "react";
-import GalleryCard from "../../components/GalleryCard.js";
-
-// navbar component
 import Navigation from "../../components/Navigation/Navigation";
+import GalleryCard from "../../components/GalleryCard.js";
 
 import Meseum from "../../utils/meseum-api";
 
@@ -22,13 +20,20 @@ export default class Gallery extends Component {
     }
     render() {
         return (
-            <div>
+            <>
                 <Navigation />
-                <h3>Gallery</h3>
-                {this.state.artworks.map((value, index) => {
-                    return <GalleryCard {...value} key={index} updateState={this.updateStateCallback}/>
-                })}
-            </div>
+                <section className="section">
+                    <div className="container gallery-container">
+                        {this.state.artworks.map((value, index) => {
+                            return (
+                                <div className="columns is-multiline">
+                                    <GalleryCard {...value} key={index} updateState={this.updateStateCallback}/>
+                                </div>
+                        )
+                        })}
+                    </div>
+                </section>
+            </>
         )
     }
 };

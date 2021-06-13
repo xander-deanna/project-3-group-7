@@ -24,7 +24,7 @@ export default class ExploreCard extends Component {
         console.log(this.props)
         return (
             <div className="columns is-mobile is-multiline is-centered">
-                <div className="card">
+                <div className="card explore-card">
                     <div className="card-content">
                         <div className="media-center">
                             <img className="artsy-img"src={this.props.imgUrl}/>

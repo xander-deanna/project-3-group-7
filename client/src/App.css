@@ -23,33 +23,43 @@
 a.nav-link {
   color: #222222;
 }
-a.navbar-item {
+div.navbar-item {
   background-color: #ffffff;
 }
-
 /* on hover */
 a.nav-link:hover {
   color: #ffffff;
 }
-a.navbar-item:hover {
+div.navbar-item:hover {
   color: #ffffff;
   background-color: #4a4a4a;
 }
-
 /* active */
 a.nav-link:active {
   color: #ffffff;
 }
-a.navbar-item:active {
+div.navbar-item:active {
   color: #ffffff;
   background-color: #0099bb;
 }
 
-/* ------- Explore page styling ----- */
-.card {
+/* --------- About page styling -------- */
+.message {
+  margin-left: 100px;
+  margin-right: 100px;
+}
+
+/* -------- Explore page styling ------- */
+.explore-card {
   width: 300px;
   height: auto;
-  margin: 20px
+  margin: 20px;
+  height: max-content;
+}
+.explore-container{
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(250px,1fr));
+	grid-gap: 0.5em;
 }
 .button.is-primary.is-light.save-btn {
   background-color: #ffffff00;
@@ -57,8 +67,30 @@ a.navbar-item:active {
   height: 30px;
   margin-bottom: 10px;
 }
-
 .artsy-img {
   width:300px;
 }
 
+/* --------- Gallery page styling ------- */
+.gallery-card {
+  width: 200px;
+  height: auto;
+  margin: 20px;
+  height: max-content;
+}
+.gallery-container{
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(250px,1fr));
+	grid-gap: 0.5em;
+}
+.artsy-img-gallery {
+  width:200px;
+  border: 2px solid #974603;
+}
+.art-frame {
+  width:200px;
+  padding: 10px;
+  background-color: #d57700;
+  border: 3px solid #bf5700;
+  box-shadow: 5px 5px 5px 1px rgba(0, 0, 0, 0.493);
+}

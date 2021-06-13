@@ -59,10 +59,13 @@ export default class Explore extends Component {
                         </Control>
                     </Field>
                 </form>
-
-                {this.state.artworks.map((value, index) => {
-                    return <ExploreCard {...value} key={index}/>
-                })}
+                <section className="section">
+                    <div className="container explore-container">
+                        {this.state.artworks.map((value, index) => {
+                            return <ExploreCard {...value} key={index}/>
+                        })}
+                    </div>
+                </section>
             </div>
         );
     }
