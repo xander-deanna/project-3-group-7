@@ -99,6 +99,7 @@ export default {
                                 var title = results.data.title;
                                 var date = results.data.date;
                                 var medium = results.data.medium;
+                                var dimensions = results.data.dimensions.in.text
                         
                                 imageArray.push({
                                     imgId: id,
@@ -106,14 +107,12 @@ export default {
                                     title: title,
                                     date: date,
                                     medium: medium,
-                                    artistName: artistName
+                                    artistName: artistName,
+                                    dimensions: dimensions
                                 });
                             }
                             callback(imageArray)
-                        })
-                            
-                    
-                        )
+                        }))
                 }, 1000)
             }
         })    
