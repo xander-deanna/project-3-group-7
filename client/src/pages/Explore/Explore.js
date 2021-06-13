@@ -18,12 +18,7 @@ export default class Explore extends Component {
         this.handleFormSubmit = this.handleFormSubmit.bind(this)
     }
 
-    // creates new token on page load
-    componentDidMount() {
-        window.addEventListener('load', API.getToken());
-     }
-
-    // takes in the input from the searchbar (???maybe???)
+    // takes in the input from the searchbar
     handleInputChange = event => {
         const value = event.target.value;
         this.setState({
