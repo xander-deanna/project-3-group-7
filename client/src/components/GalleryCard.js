@@ -8,8 +8,10 @@ export default class ExploreCard extends Component {
         //select the current art by id and assign its value to variable art
         
         //API call to post id to backend 
+        let _id = this.props._id
         Meseum.deleteArt(this.props._id).then((res) => {
             console.log(res)
+            this.props.updateState(_id)
             //write codes for what you want to happen after the art has been posted to datatbase
         })
     }
