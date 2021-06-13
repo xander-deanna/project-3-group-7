@@ -1,13 +1,14 @@
 const express = require("express");
+const app = express();
 const mongoose = require("mongoose");
 const bodyParser = require('body-parser');
 const session = require("express-session");
-const passport = require("passport");
+const MongoStore = require('connect-mongo');
 const users = require("./routes/api/users");
 const artRouter = require("./routes/api/art-router");
 const path = require("path");
+require("dotenv").config();
 
-const app = express();
 
 // Bodyparser middleware
 app.use(
@@ -16,9 +17,6 @@ app.use(
   })
 );
 app.use(bodyParser.json());
-
-// DB Config
-const db = require("./config/keys").mongoURI;
 
 // Connect to MongoDB
 mongoose
@@ -34,13 +32,13 @@ mongoose
   .then(() => console.log("MongoDB successfully connected"))
   .catch(err => console.log(err));
 
-// Passport middleware
-app.use(session({ secret: "cats" }));
-app.use(passport.initialize());
-app.use(passport.session());
+app.use(session({
+  secret: process.env.secret,
+  resave: false,
+  saveUninitialized: true,
+  store: MongoStore.create({ mongoUrl: process.env.MONGODB_URI })
+}));
 
-// Passport config
-require("./config/passport")(passport);
 
 // Routes
 app.use("/api/users", users);
