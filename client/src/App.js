@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import jwt_decode from "jwt-decode";
-import setAuthToken from "./utils/setAuthToken";
 
-import { setCurrentUser, logoutUser } from "./actions/authActions";
+
+import { setCurrentUser } from "./actions/authActions";
 import { Provider } from "react-redux";
 import store from "./store";
 
@@ -26,7 +25,7 @@ if (localStorage.userID) {
   const token = localStorage.userID;
   // setAuthToken(token);
   // Decode token and get user info and exp
-  
+
   // Set user and isAuthenticated
   store.dispatch(setCurrentUser(token));
   // Check for expired token
@@ -56,7 +55,7 @@ class App extends Component {
               <PrivateRoute exact path="/about" component={About} />
               <PrivateRoute exact path="/explore" component={Explore} />
               <PrivateRoute exact path="/gallery" component={Gallery} />
-              
+
             </Switch>
           </div>
         </Router>
