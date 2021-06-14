@@ -21,8 +21,8 @@ class Navigation extends Component {
           <Navbar.Item renderAs="div">
             <Link className="nav-link logo" to={"/about"}><strong>(<strong className="logo-blue">ME</strong>)<strong>seum</strong></strong></Link>
 
-          </Navbar.Item>
-          <Navbar.Burger />
+          </Navbar.Item >
+          <Navbar.Burger/>
         </Navbar.Brand>
         <Navbar.Menu>
 
@@ -32,13 +32,13 @@ class Navigation extends Component {
           {/* -- end weird hackyness -- */}
 
           <Navbar.Container>
-            <Navbar.Item renderAs="div">
+            <Navbar.Item renderAs="div" className="nav-btn">
               <Link className="nav-link" to={"/about"}><strong>ABOUT</strong></Link>
             </Navbar.Item>
-            <Navbar.Item renderAs="div">
+            <Navbar.Item renderAs="div" className="nav-btn">
               <Link className="nav-link" to={"/explore"}><strong>EXPLORE</strong></Link>
             </Navbar.Item>
-            <Navbar.Item renderAs="div">
+            <Navbar.Item renderAs="div" className="nav-btn">
               <Link className="nav-link" to={"/gallery"}><strong>GALLERY</strong></Link>
             </Navbar.Item>
           </Navbar.Container>
