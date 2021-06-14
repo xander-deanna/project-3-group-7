@@ -9,6 +9,7 @@ A digital art browser, where you can drag and drop to create your own art galler
   - [Original-Design](#Original-Design)
   - [Breakdown-of-Roles](#Breakdown-of-Roles)
   - [Schedule](#Schedule)
+  - [Finished-Demo](#Finished-Demo)
   - [License](#License)
   - [Contact](#Contact)
 
@@ -50,7 +51,7 @@ THEN I am directed to the homepage of login and sign-up
 ```
 
 ## Original-Design
-![Original Design Idea](./public/assets/images/mockup/WholeLayoutDemo.gif)
+![Original Design Idea](./client/public/images/WholeLayoutDemo.gif)
 
 ## Breakdown
 ```
@@ -71,17 +72,21 @@ MonogDB will be used for the saved search
 ```
 
 ## Data Flow
-![Screen Shot 2021-05-26 at 7 54 33 PM](https://user-images.githubusercontent.com/63210444/119750070-57385180-be4d-11eb-827e-a20478b559f2.png)
+![Screen Shot 2021-05-26 at 7 54 33 PM](client/public/images/data-flow.png)
 
 
 ## Schedule
+![Overall Schedule](client/public/images/schedule1.png)
+![Login and Signup Schedule](client/public/images/schedule2.png)
+![Explore Schedule](client/public/images/schedule3.png)
+![Gallery Schedule](client/public/images/schedule4.png)
+![Mongo Setup](client/public/images/schedule5.png)
+<br>
 
-![SNAPS 2021-05-24 at 7 03 49 PM](https://user-images.githubusercontent.com/63210444/119748367-a2506580-be49-11eb-833d-d849e3176590.png)
-![SNAPS 2021-05-24 at 7 04 17 PM](https://user-images.githubusercontent.com/63210444/119748392-b1cfae80-be49-11eb-9322-85b70e62dd3c.png)
-![SNAPS 2021-05-24 at 7 04 28 PM](https://user-images.githubusercontent.com/63210444/119748394-b2684500-be49-11eb-9ab7-41a76628ced0.png)
-![SNAPS 2021-05-24 at 7 04 38 PM](https://user-images.githubusercontent.com/63210444/119748395-b300db80-be49-11eb-8c1d-8070c9c39c45.png)
-![SNAPS 2021-05-24 at 7 04 58 PM](https://user-images.githubusercontent.com/63210444/119748408-b85e2600-be49-11eb-976a-66a6516ba954.png)
-
+## Finished-Demo
+Demo gif will go here
+<br>
+<br>
 
 ## License
 This site was created by **Deanna Alexander**, **Kayleigh Hanna**, and **Manorath Naphaphone** and is Licensed under the [MIT License](LICENSE.md).
@@ -94,5 +99,5 @@ Please feel free to contact us with any questions you might have, using the foll
 | Name                | Email                                                       | GitHub                                                               |
 | ------------------- | ----------------------------------------------------------- | -------------------------------------------------------------------- |
 | Deanna Alexander    | [xander.deanna@gmail.com](mailto:xander.deanna@gmail.com)   | [https://github.com/xander-deanna](https://github.com/xander-deanna) |
-| Kayleigh Hannah     | [kayleighchanna@gmail.com](mailto:kayleighchanna@gmail.com) | [https://github.com/K-league](https://github.com/K-league)           |
+| Kayleigh Hanna     | [kayleighchanna@gmail.com](mailto:kayleighchanna@gmail.com) | [https://github.com/K-league](https://github.com/K-league)           |
 | Manorath Naphaphone | [naphaphonem@outlook.com](naphaphonem@outlook.com)          | [https://github.com/manorathn](https://github.com/manorathn)         |
