@@ -1,6 +1,12 @@
-/* Global Font */
+/* Global Attributes */
 * {
   font-family: 'Cairo', sans-serif;
+}
+body > #root > div {
+  height: 100vh;
+}
+.col {
+  margin: 5px;
 }
 
 /* brand colors */
@@ -30,7 +36,7 @@ div.navbar-item {
 a.nav-link:hover {
   color: #ffffff;
 }
-div.navbar-item:hover {
+div.nav-btn:hover {
   color: #ffffff;
   background-color: #4a4a4a;
 }
@@ -38,7 +44,7 @@ div.navbar-item:hover {
 a.nav-link:active {
   color: #ffffff;
 }
-div.navbar-item:active {
+div.nav-btn:active {
   color: #ffffff;
   background-color: #0099bb;
 }
@@ -93,4 +99,24 @@ div.navbar-item:active {
   background-color: #d57700;
   border: 3px solid #bf5700;
   box-shadow: 5px 5px 5px 1px rgba(0, 0, 0, 0.493);
+}
+.art-plaque {
+  width: 150px;
+  background-color: #ffffff;
+  border: 1px solid #000000;
+  box-shadow: 5px 5px 5px 1px rgba(0, 0, 0, 0.493);
+}
+.art-plaque-content {
+  padding: 0px
+}
+.art-plaque-content li {
+  padding: 3px;
+  position: relative;
+  font-size: 12px;
+  margin: 0;
+}
+.delete {
+  position: absolute;
+  right: 0%;
+  top: 0%;
 }

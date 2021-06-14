@@ -23,11 +23,12 @@ export default class GalleryCard extends Component {
                     <div className="media-center art-frame">
                         <img className="artsy-img-gallery"src={this.props.imgUrl}/>
                     </div>
-                    <div className="content art-plaque">
-                        
+                    <br/>
+                    <button onClick={this.artDelete} className="delete"/>
+                    <div className="art-plaque">
                         <ul className="art-plaque-content">
                             <li>
-                            <em>{this.props.title}, <strong>{this.props.artistName}</strong><br/></em>
+                            <em>{this.props.title}, <strong>{this.props.artistName}</strong></em>
                             </li>
                             <li>
                                 {this.props.date}
@@ -39,9 +40,6 @@ export default class GalleryCard extends Component {
                                 {this.props.dimensions}
                             </li>
                         </ul>
-                        <button onClick={this.artDelete} className="button is-light is-primary is-pulled-right save-btn">
-                            <i class="fas fa-trash-alt"></i>
-                        </button>
                     </div>
                 </div>
             </Draggable>
