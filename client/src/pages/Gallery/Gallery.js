@@ -31,6 +31,7 @@ export default class Gallery extends Component {
 
         return (
             <div style ={{
+                height: '100%', 
                 backgroundColor: this.state.color,
             }}>
                 <Navigation />
