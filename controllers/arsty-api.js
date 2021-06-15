@@ -39,19 +39,18 @@ module.exports = {
     
             // returns only results of type "artist", grabs artist ID and name
             .then(function (data) {
-                console.log('artist data object: ', data)
     
                 // artistId
                 let artistId = data.data._embedded.results.filter(function (item) {
                     return item.type === 'artist';
                 })[0]._links.self.href.split('/').pop();
-                console.log('artistId: ', artistId)
+
     
                 // artistName
                 let artistName = data.data._embedded.results.filter(function (item) {
                     return item.type === 'artist';
                 })[0].title;
-                console.log('artistName: ', artistName)
+
     
                 // runs another axios get request to search artworks using the artistId we just grabbed
                 return axios.get(`${url}artworks?artist_id=${artistId}`, {
@@ -73,11 +72,8 @@ module.exports = {
             .then(function (completeResults) {
             let results = completeResults[0]
             let artistName = completeResults[1]
-            console.log('results of searching artworks by artist ID: ', results)
                 if (results.data._embedded.artworks.length == 0) {
-                    console.log("No art found! (ME)seum is only able to search public works, please try another artist.")
-                        // noArtFound()
-                    ;
+                    res.json([]);
                 }
                 else { 
                     // for loop that searchs the the API for artworks based on the artwork ID

@@ -59,6 +59,7 @@ export default class Explore extends Component {
                         {this.state.artworks.map((value, index) => {
                             return <ExploreCard {...value} key={index}/>
                         })}
+                        {this.state.artworks.length == 0 && <div>No artwork to show</div>}
                     </div>
                 </section>
             </div>
