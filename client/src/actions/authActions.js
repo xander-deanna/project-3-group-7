@@ -1,5 +1,4 @@
 import axios from "axios";
-import { Session } from "express-session";
 import { GET_ERRORS, SET_CURRENT_USER, USER_LOADING } from "./types";
 
 // Register User
@@ -46,9 +45,10 @@ export const setUserLoading = () => {
 // Log user out
 export const logoutUser = () => dispatch => {
   // Remove token from local storage
-  axios
-    .post("/api/users/logout", {})
-  Session.loggedIn = false
-  localStorage.clear()
-  dispatch(setCurrentUser({}));
+  axios.post("/api/users/logout", {})
+  .then( () => {
+    localStorage.clear()
+    dispatch(setCurrentUser({}));
+  })
+
 }
