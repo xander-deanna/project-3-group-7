@@ -47,6 +47,7 @@ app.use("/api/artists", artRouter);
 app.use("/api/artsy", artsyRouter);
 app.use(express.static(path.join(__dirname, 'client/build')));
 app.get('/*', (req, res) => {
+  console.log("loggedIn" + req.session.loggedIn)
   res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
 });
 const PORT = process.env.PORT || 3001;

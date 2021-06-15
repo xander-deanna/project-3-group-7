@@ -8,7 +8,7 @@ const validateLoginInput = require("../../validation/login");
 
 // Load User model
 const User = require("../../models/user");
-const { Session } = require("express-session");
+
 
 // @route POST api/users/register
 // @desc Register user
@@ -93,8 +93,8 @@ router.post("/login", (req, res) => {
 });
 
 router.post("/logout", (req, res) => {
-  Session.destroy()
-  // localStorage.clear()
+  req.session.userId = undefined;
+  req.session.loggedIn = false; //for good measure
   req.session.destroy(() => {
     res.status(200).json({ success: true })
   })
