@@ -7,6 +7,7 @@ export default {
 
         // returns only results of type "artist", grabs artist ID and name
         .then((results) => {
+            console.log(results.data)
             callback(results.data)
         })    
     }
