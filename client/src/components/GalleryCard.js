@@ -28,7 +28,7 @@ export default class GalleryCard extends Component {
                     <div className="art-plaque">
                         <ul className="art-plaque-content">
                             <li>
-                            <em>{this.props.title}, <strong>{this.props.artistName}</strong></em>
+                            <em>{this.props.title}, <strong>{this.props.artist}</strong></em>
                             </li>
                             <li>
                                 {this.props.date}
