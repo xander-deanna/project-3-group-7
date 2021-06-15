@@ -16,6 +16,13 @@ const imgMap = [Background1, Background2, Background3, Background3, Background4,
 let BackgroundImage = imgMap[Math.floor(Math.random() * imgMap.length)];
 
 class Landing extends Component {
+  componentDidMount() {
+    console.log(this.props);
+    // If logged in and user navigates to Login page, should redirect them to about page
+    if (localStorage.userID) {
+      this.props.history.push("/about");
+    }
+  }
   render() {
     return (
       <div style={{ 
