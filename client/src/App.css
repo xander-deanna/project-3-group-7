@@ -117,6 +117,6 @@ div.nav-btn:active {
 }
 .delete {
   position: absolute;
-  right: 0%;
+  left: 230px;
   top: 0%;
 }
