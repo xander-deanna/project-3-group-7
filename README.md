@@ -83,8 +83,8 @@ MonogDB will be used for the saved search
 ![Mongo Setup](client/public/images/schedule5.png)
 <br>
 
-## Finished-Demo
-Demo gif will go here
+## Deployed Link
+Find our project here: https://meseum.herokuapp.com/
 <br>
 <br>
 
